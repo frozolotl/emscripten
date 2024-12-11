@@ -1262,8 +1262,9 @@ var HEADLESS = false;
 // environments, for example, not doing anything different based on the
 // browser's language setting (which would mean you can get different results
 // in different browsers, or in the browser and in node).
-// Good for comparing builds for debugging purposes (and nothing else).
-// [link]
+// Good for comparing builds for debugging purposes (and making things kind of
+// work in certain WASM runtimes).
+// [compile+link]
 var DETERMINISTIC = false;
 
 // By default we emit all code in a straightforward way into the output

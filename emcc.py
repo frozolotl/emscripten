@@ -427,6 +427,9 @@ def get_cflags(user_args, is_cxx):
   if settings.WASM_WORKERS:
     cflags.append('-D__EMSCRIPTEN_WASM_WORKERS__=1')
 
+  if settings.DETERMINISTIC:
+    cflags.append('-D__EMSCRIPTEN_DETERMINISTIC__=1')
+
   if not settings.STRICT:
     # The preprocessor define EMSCRIPTEN is deprecated. Don't pass it to code
     # in strict mode. Code should use the define __EMSCRIPTEN__ instead.

@@ -67,9 +67,14 @@ int __clock_gettime(clockid_t clk, struct timespec *ts) {
 		errno = EINVAL;
 		return -1;
   }
+#ifdef __EMSCRIPTEN_DETERMINISTIC__
+	ts->tv_sec = 0;
+	ts->tv_nsec = 0;
+#else
 	if (__wasi_syscall_ret(__wasi_clock_time_get(clk, 1, &timestamp))) {
 		return -1;
 	}
+#endif
 	*ts = __wasi_timestamp_to_timespec(timestamp);
 	return 0;
 }
